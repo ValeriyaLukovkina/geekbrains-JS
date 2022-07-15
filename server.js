@@ -5,10 +5,9 @@ const fs = require('fs');
 // response - то, что отдадим нашему клиенту
 const server = http.createServer((req, res) => {
     console.log(req.url)
-    const body = fs.readFileSync('./public/index.html')
+    const body = req.url === '/style.css' ? fs.readFileSync('./public/style.css') : fs.readFileSync('./public/index.html')
     res.end(body);
 });
 
-const port = process.env.PORT || 3000;
-server.listen(port);
+server.listen(3000);
 console.log('Server started!');
